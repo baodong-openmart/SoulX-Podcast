@@ -10,7 +10,7 @@ prompt_audio=${3:-"/workspace/SoulX-Podcast/example/audios/female_mandarin.wav"}
 output_path=${4:-"outputs/mandarin_tts.wav"}
 
 
-python cli/tts.py \
+/usr/bin/python cli/tts.py \
         --text "${text}" \
         --prompt_text "${prompt_text}" \
         --prompt_audio "${prompt_audio}" \
