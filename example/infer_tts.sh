@@ -3,23 +3,6 @@
 export PYTHONPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
 echo "PYTHONPATH set to: $PYTHONPATH"
 
-
-text=${1:-"hmm"}
-prompt_text=${2:-"喜欢攀岩、徒步、滑雪的语言爱好者，以及过两天要带着全部家当去景德镇做陶瓷的白日梦想家。"}
-prompt_audio=${3:-"/workspace/SoulX-Podcast/example/audios/female_mandarin.wav"}
-output_path=${4:-"outputs/mandarin_tts.wav"}
-
-
-/usr/bin/python cli/tts.py \
-        --text "${text}" \
-        --prompt_text "${prompt_text}" \
-        --prompt_audio "${prompt_audio}" \
-        --output_path "${output_path}" \
-        --seed 7 \
-        --dialect_prompt "" \
-        --model_path "pretrained_models/SoulX-Podcast-1.7B"
-
-
 text=${1:-"hmm"}
 voice_id=${2:-"1"}
 output_path=${3:-"outputs/infer_tts.wav"}
@@ -53,7 +36,7 @@ echo "Using voice_id: ${voice_id}"
 echo "Prompt text: ${prompt_text}"
 echo "Prompt audio: ${prompt_audio}"
 
-python cli/tts.py \
+/usr/bin/python /workspace/SoulX-Podcast/cli/tts.py \
         --text "${text}" \
         --prompt_text "${prompt_text}" \
         --prompt_audio "${prompt_audio}" \
