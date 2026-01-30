@@ -10,5 +10,5 @@ echo ${input_file}
 /usr/bin/python /workspace/SoulX-Podcast/cli/podcast.py \
         --json_path ${input_file} \
         --model_path ${model_dir} \
-        --output_path outputs/mandarin.wav \
+        --output_path outputs/output.wav \
         --seed 7

@@ -39,7 +39,7 @@ def run_inference(
         if target_audio is None:
             target_audio = wav
         else:
-            pause_duration = 1.0  # seconds
+            pause_duration = 3.14  # seconds
             sample_rate = 24000  # HZ
             pause_samples = int(pause_duration * sample_rate)
             silence = torch.zeros(1, pause_samples, device=wav.device)
