@@ -12,3 +12,4 @@ onnxruntime
 onnxruntime-gpu
 einops
 gradio
+torchvision==0.22.1
