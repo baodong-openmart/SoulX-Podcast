@@ -39,7 +39,13 @@ def run_inference(
         if target_audio is None:
             target_audio = wav
         else:
-            target_audio = torch.cat([target_audio, wav], dim=1)
+            pause_duration = 1.0  # seconds
+            sample_rate = 24000  # HZ
+            pause_samples = int(pause_duration * sample_rate)
+            silence = torch.zeros(1, pause_samples, device=wav.device)
+            
+            target_audio = torch.cat([target_audio, silence, wav], dim=1)
+            # target_audio = torch.cat([target_audio, wav], dim=1)
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     sf.write(output_path, target_audio.cpu().squeeze(0).numpy(), 24000)

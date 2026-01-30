@@ -3,9 +3,11 @@ echo "PYTHONPATH set to: $PYTHONPATH"
 
 # Note: To infer Chinese dialects, set model_dir to "pretrained_models/SoulX-Podcast-1.7B-dialect
 model_dir=pretrained_models/SoulX-Podcast-1.7B
-input_file=example/podcast_script/script_mandarin.json
+input_file=/workspace/SoulX-Podcast/example/podcast_script/script_english.json
 
-python cli/podcast.py \
+echo ${input_file}
+
+/usr/bin/python /workspace/SoulX-Podcast/cli/podcast.py \
         --json_path ${input_file} \
         --model_path ${model_dir} \
         --output_path outputs/mandarin.wav \
