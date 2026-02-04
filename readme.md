@@ -95,15 +95,38 @@ For more examples, see [demo page](https://soul-ailab.github.io/soulx-podcast/).
 ## Install
 
 ### Clone and Install
-Here are instructions for installing on Linux.
-- Clone the repo
+
+#### Option 1: Using uv (Recommended)
+The fastest way to set up the project:
+```bash
+git clone git@github.com:Soul-AILab/SoulX-Podcast.git
+cd SoulX-Podcast
+
+# Install uv if not already installed
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Sync all dependencies (automatically creates venv and installs the project)
+uv sync
+
+# For GPU support on Linux/Windows, install optional dependencies
+uv sync --extra gpu
 ```
+
+That's it! The project is now ready to use. `uv sync` will:
+- Create a virtual environment
+- Install all dependencies
+- Install the project as an editable package (no need to set PYTHONPATH)
+
+#### Option 2: Using Conda
+Traditional setup for Linux:
+- Clone the repo
+```bash
 git clone git@github.com:Soul-AILab/SoulX-Podcast.git
 cd SoulX-Podcast
 ```
 - Install Conda: please see https://docs.conda.io/en/latest/miniconda.html
 - Create Conda env:
-```
+```bash
 conda create -n soulxpodcast -y python=3.11
 conda activate soulxpodcast
 pip install -r requirements.txt
@@ -162,22 +185,45 @@ git clone https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B-dialect pretraine
 ### Basic Usage
 
 You can simply run the demo with the following commands:
-``` sh
+
+**Using uv (recommended):**
+```bash
 # dialectal inference
+bash example/infer_dialogue.sh
+
+# or run Python scripts directly
+uv run python cli/tts.py --text "Hello world" --prompt_text "..." --prompt_audio "..." --model_path "..."
+```
+
+**Using traditional Python:**
+```bash
+# Activate your environment first
+conda activate soulxpodcast  # or source .venv/bin/activate
+
+# Then run the script
 bash example/infer_dialogue.sh
 ```
 
 ### WebUI
 
 You can simply run the webui with the following commands:
-``` sh
+
+**Using uv (recommended):**
+```bash
+# Base Model:
+uv run python webui.py --model_path pretrained_models/SoulX-Podcast-1.7B
+
+# If you want to experience dialect podcast generation, use the dialectal model:
+uv run python webui.py --model_path pretrained_models/SoulX-Podcast-1.7B-dialect
+```
+
+**Using traditional Python:**
+```bash
 # Base Model:
 python3 webui.py --model_path pretrained_models/SoulX-Podcast-1.7B
 
-# If you want to experience dialect podcast generation, use the dialectal model:
+# Dialectal model:
 python3 webui.py --model_path pretrained_models/SoulX-Podcast-1.7B-dialect
-
-
 ```
 
 

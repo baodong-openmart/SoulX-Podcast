@@ -1,8 +1,5 @@
 #!/bin/bash
 
-export PYTHONPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
-echo "PYTHONPATH set to: $PYTHONPATH"
-
 text=${1:-"hmm"}
 voice_id=${2:-"1"}
 output_path=${3:-"outputs/infer_tts.wav"}

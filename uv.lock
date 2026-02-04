@@ -1315,12 +1315,12 @@ name = "onnxruntime-gpu"
 version = "1.23.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "coloredlogs" },
-    { name = "flatbuffers" },
-    { name = "numpy" },
-    { name = "packaging" },
-    { name = "protobuf" },
-    { name = "sympy" },
+    { name = "coloredlogs", marker = "sys_platform != 'emscripten'" },
+    { name = "flatbuffers", marker = "sys_platform != 'emscripten'" },
+    { name = "numpy", marker = "sys_platform != 'emscripten'" },
+    { name = "packaging", marker = "sys_platform != 'emscripten'" },
+    { name = "protobuf", marker = "sys_platform != 'emscripten'" },
+    { name = "sympy", marker = "sys_platform != 'emscripten'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/43/a4/e3d7fbe32b44e814ae24ed642f05fac5d96d120efd82db7a7cac936e85a9/onnxruntime_gpu-1.23.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d76d1ac7a479ecc3ac54482eea4ba3b10d68e888a0f8b5f420f0bdf82c5eec59", size = 300525715, upload-time = "2025-10-22T16:56:19.928Z" },
@@ -2215,7 +2215,7 @@ wheels = [
 [[package]]
 name = "soulx-podcast"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "accelerate" },
     { name = "diffusers" },
@@ -2225,14 +2225,18 @@ dependencies = [
     { name = "librosa" },
     { name = "numpy" },
     { name = "onnxruntime" },
-    { name = "onnxruntime-gpu" },
     { name = "s3tokenizer" },
     { name = "scipy" },
     { name = "torch" },
     { name = "torchaudio" },
     { name = "torchvision" },
     { name = "transformers" },
-    { name = "triton" },
+]
+
+[package.optional-dependencies]
+gpu = [
+    { name = "onnxruntime-gpu", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { name = "triton", marker = "sys_platform == 'linux'" },
 ]
 
 [package.metadata]
@@ -2245,15 +2249,16 @@ requires-dist = [
     { name = "librosa", specifier = ">=0.11.0" },
     { name = "numpy", specifier = ">=2.3.5" },
     { name = "onnxruntime", specifier = ">=1.23.2" },
-    { name = "onnxruntime-gpu", specifier = ">=1.23.2" },
+    { name = "onnxruntime-gpu", marker = "(sys_platform == 'linux' and extra == 'gpu') or (sys_platform == 'win32' and extra == 'gpu')", specifier = ">=1.23.2" },
     { name = "s3tokenizer", specifier = ">=0.3.0" },
     { name = "scipy", specifier = ">=1.17.0" },
     { name = "torch", specifier = "==2.7.1" },
     { name = "torchaudio", specifier = "==2.7.1" },
     { name = "torchvision", specifier = "==0.22.1" },
     { name = "transformers", specifier = "==4.57.1" },
-    { name = "triton", specifier = ">=3.0.0" },
+    { name = "triton", marker = "sys_platform == 'linux' and extra == 'gpu'", specifier = ">=3.0.0" },
 ]
+provides-extras = ["gpu"]
 
 [[package]]
 name = "soundfile"
@@ -2542,7 +2547,7 @@ name = "triton"
 version = "3.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "setuptools" },
+    { name = "setuptools", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/21/2f/3e56ea7b58f80ff68899b1dbe810ff257c9d177d288c6b0f55bf2fe4eb50/triton-3.3.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b31e3aa26f8cb3cc5bf4e187bf737cbacf17311e1112b781d4a059353dfd731b", size = 155689937, upload-time = "2025-05-29T23:39:44.182Z" },

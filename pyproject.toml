@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "soulx-podcast"
 version = "0.1.0"
@@ -13,12 +17,19 @@ dependencies = [
     "librosa>=0.11.0",
     "numpy>=2.3.5",
     "onnxruntime>=1.23.2",
-    "onnxruntime-gpu>=1.23.2",
     "s3tokenizer>=0.3.0",
     "scipy>=1.17.0",
     "torch==2.7.1",
     "torchaudio==2.7.1",
     "torchvision==0.22.1",
     "transformers==4.57.1",
-    "triton>=3.0.0",
 ]
+
+[project.optional-dependencies]
+gpu = [
+    "onnxruntime-gpu>=1.23.2; sys_platform == 'linux' or sys_platform == 'win32'",
+    "triton>=3.0.0; sys_platform == 'linux'",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["soulxpodcast"]
