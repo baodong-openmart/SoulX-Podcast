@@ -3,6 +3,8 @@
 text=${1:-"hmm"}
 voice_id=${2:-"1"}
 output_path=${3:-"outputs/infer_tts.wav"}
+prompt_text=${4:-""}
+prompt_audio=${5:-""}
 
 # 根据 voice_id 设置 prompt_text 和 prompt_audio
 case "${voice_id}" in
@@ -31,9 +33,6 @@ case "${voice_id}" in
         prompt_audio="/workspace/rhythm-emulation/assets/output/segments/overlap_segment_26_452.62s-460.06s_S01/MossFormer2_SS_16K/overlap_segment_26_452.62s-460.06s_S01_s1.wav"
         ;;
     *)
-        # 默认使用第一组
-        prompt_text="喜欢攀岩、徒步、滑雪的语言爱好者，以及过两天要带着全部家当去景德镇做陶瓷的白日梦想家。"
-        prompt_audio="/workspace/SoulX-Podcast/example/audios/female_mandarin.wav"
         ;;
 esac
 
@@ -52,3 +51,4 @@ uv run cli/tts.py \
 
 # How to use:
 # /workspace/SoulX-Podcast/example/infer_tts.sh "All prompt audio samples used in the following generations are in Mandarin" "2"
+# /workspace/SoulX-Podcast/example/infer_tts.sh "All prompt audio samples used in the following generations are in Mandarin" "0" "outputs/infer_tts.wav" "prompt_text" "prompt_audio"
