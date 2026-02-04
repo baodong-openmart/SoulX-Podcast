@@ -25,6 +25,14 @@ case "${voice_id}" in
         prompt_text="呃，还有一个就是要跟大家纠正一点，就是我们在看电影的时候，尤其是游戏玩家，看电影的时候，在看到那个到西北那边的这个陕北民谣，嗯，这个可能在想，哎，是不是他是受到了黑神话的启发？"
         prompt_audio="/workspace/SoulX-Podcast/example/audios/male_mandarin.wav"
         ;;
+    "5")
+        prompt_text="uh-huh"
+        prompt_audio="/workspace/rhythm-emulation/assets/output/segments/overlap_segment_01_3.62s-12.44s_S01/MossFormer2_SS_16K/overlap_segment_01_3.62s-12.44s_S01_s2.wav"
+        ;;
+    "6")
+        prompt_text="Laptop doesn't come with it, but everything else if you do, just want to make sure we make that clear. These polo shirts have that Valuetainment button on it."
+        prompt_audio="/workspace/rhythm-emulation/assets/output/segments/overlap_segment_26_452.62s-460.06s_S01/MossFormer2_SS_16K/overlap_segment_26_452.62s-460.06s_S01_s1.wav"
+        ;;
     *)
         # 默认使用第一组
         prompt_text="喜欢攀岩、徒步、滑雪的语言爱好者，以及过两天要带着全部家当去景德镇做陶瓷的白日梦想家。"
@@ -36,7 +44,7 @@ echo "Using voice_id: ${voice_id}"
 echo "Prompt text: ${prompt_text}"
 echo "Prompt audio: ${prompt_audio}"
 
-/usr/bin/python /workspace/SoulX-Podcast/cli/tts.py \
+/workspace/SoulX-Podcast/.venv/bin/python3 /workspace/SoulX-Podcast/cli/tts.py \
         --text "${text}" \
         --prompt_text "${prompt_text}" \
         --prompt_audio "${prompt_audio}" \
