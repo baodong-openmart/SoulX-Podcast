@@ -41,7 +41,7 @@ echo "Using voice_id: ${voice_id}"
 echo "Prompt text: ${prompt_text}"
 echo "Prompt audio: ${prompt_audio}"
 
-/workspace/SoulX-Podcast/.venv/bin/python3 /workspace/SoulX-Podcast/cli/tts.py \
+uv run cli/tts.py \
         --text "${text}" \
         --prompt_text "${prompt_text}" \
         --prompt_audio "${prompt_audio}" \
